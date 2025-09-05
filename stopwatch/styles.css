@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 50%, #1E90FF 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.stopwatch {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 40px 30px;
+    box-shadow: 
+        0 20px 40px rgba(138, 43, 226, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    transition: transform 0.3s ease;
+
+}
+
+
+.stopwatch:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.display {
+    font-family: 'Inter', monospace;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 35px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    width: 350px; /* Set a fixed width */
+    overflow: hidden; /* Prevent overflow */
+    text-align: center; /* Center the text */
+}
+
+.display:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 16px 25px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+#startBtn {
+    background: linear-gradient(135deg, #9370DB, #8A2BE2);
+}
+
+#startBtn:hover {
+    background: linear-gradient(135deg, #8A2BE2, #9370DB);
+}
+
+#pauseBtn {
+    background: linear-gradient(135deg, #6A5ACD, #483D8B);
+}
+
+#pauseBtn:hover {
+    background: linear-gradient(135deg, #483D8B, #6A5ACD);
+}
+
+#resetBtn {
+    background: linear-gradient(135deg, #4169E1, #1E90FF);
+}
+
+#resetBtn:hover {
+    background: linear-gradient(135deg, #1E90FF, #4169E1);
+}
+
+#lapBtn {
+    background: linear-gradient(135deg, #DA70D6, #BA55D3);
+    grid-column: span 2;
+}
+
+#lapBtn:hover {
+    background: linear-gradient(135deg, #BA55D3, #DA70D6);
+}
+
+.laps {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 25px;
+    max-height: 250px;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.laps h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.laps ul {
+    list-style: none;
+}
+
+.laps li {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 14px 20px;
+    margin: 10px 0;
+    border-radius: 12px;
+    font-size: 1rem;
+    border-left: 4px solid #9370DB;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.laps li:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(8px);
+}
+
+.laps li:nth-child(even) {
+    border-left-color: #6A5ACD;
+}
+
+.laps li:nth-child(3n) {
+    border-left-color: #4169E1;
+}
+
+.laps li:nth-child(4n) {
+    border-left-color: #DA70D6;
+}
+
+/* Scrollbar styling */
+.laps::-webkit-scrollbar {
+    width: 8px;
+}
+
+.laps::-webkit-scrollbar-track {
+    background: rgba(62, 181, 232, 0.1);
+    border-radius: 10px;
+}
+
+.laps::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #9370DB, #8A2BE2);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.laps::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #8A2BE2, #9370DB);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .stopwatch {
+        padding: 30px 20px;
+        margin: 15px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .display {
+        font-size: 2.8rem;
+        padding: 20px;
+    }
+    
+    .controls {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    button {
+        grid-column: span 1 !important;
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+    
+    #lapBtn {
+        margin-top: 10px;
+    }
+}
+
+/* Cozy animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.stopwatch {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Particle effects for extra coziness */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
+    background-size: 50px 50px, 70px 70px, 100px 100px;
+    pointer-events: none;
+    z-index: -1;
+}
